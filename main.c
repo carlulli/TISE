@@ -91,6 +91,7 @@ int main(int argc, char* argv[]) {
   does not need to be passed the tolerance
   set_tol(); */
   double tol = atof(argv[4]);
+  printf("Powermethod tolerance =\t%f\n", tol);
 /* power_method(tol, &H_inv(), eigenstate) where H_inv() also gets N  */
   eigenvalue = power_method(tol, &H_inv, eigenstate);
 

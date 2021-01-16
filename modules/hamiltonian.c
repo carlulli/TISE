@@ -45,15 +45,19 @@ void set_potential(int pot) {
 
 	if(pot == 0) {
 		set_zero_potential();
+		printf("[hamiltonian.c | set_potential()] Chosen POTENTIAL: Zero-potential \n");
 	}
 	else if(pot == 1) {
 		set_harmonic_potential();
+		printf("[hamiltonian.c | set_potential()] Chosen POTENTIAL: harmonic potential \n");
 	}
 	else if(pot == 2 ) {
 		set_well_potential();
+		printf("[hamiltonian.c | set_potential()] Chosen POTENTIAL: well potential \n");
 	}
 	else if(pot == 3) {
 		set_wall_potential();
+		printf("[hamiltonian.c | set_potential()] Chosen POTENTIAL: wall potential \n");
 	}
 	else {
 		printf("[hamiltonian.c | set_potentila()] No potential assigned! Possibel choices 0,1,2,3\n");
