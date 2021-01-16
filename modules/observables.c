@@ -33,7 +33,7 @@ double avgx(double complex *psi) {
   for (int n=0; n<N; n++) {
     sum += n * ( creal(psi[n])*creal(psi[n]) + cimag(psi[n])*cimag(psi[n]) );
   }
-  printf("[observables.c | avgx()] sum =\t%f\t Norm =\t%f\n" , sum, Normal(psi));
+/*  printf("[observables.c | avgx()] sum =\t%f\t Norm =\t%f\n" , sum, Normal(psi)); */
   return sum/Normal(psi);
 }
 
