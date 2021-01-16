@@ -39,7 +39,7 @@ double get_res() {
     printf("[conjugategradient | set_res()] ERROR: Residue not initialzed yet!");
     exit(-1);
   }
-  return accuracy; 
+  return accuracy;
 }
 
 
@@ -132,7 +132,7 @@ void conj_grad ( double complex b[], double complex x[], void(*pfunc)(double com
    print rsnew for testing
 ***************************************************************************/
 
-        printf("\n rsnew %f,  \n",rsnew);
+        printf("[conjugategradient.c | ] INFO: rsnew\t%f  \n",rsnew); 
 
 /************************************************************************
    break condition
@@ -158,7 +158,7 @@ void conj_grad ( double complex b[], double complex x[], void(*pfunc)(double com
    prints loop number and can print x
 ***************************************************************************/
 
-        printf("loop number %i",it);
+        printf("[conjugategradient.c | ] loop number %i\n",it);
         /*printf("\n x bei loop %i\n",it);
         for(int i = 0; i < N; i++)
         {

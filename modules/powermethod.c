@@ -38,7 +38,7 @@ double power_method(double tol,void (*M)(double complex*,
   while(delta_norm > tol){
     M(w,z);
     mu = norm(z,N);
-    printf("mu = %.15f\t  \n",mu);
+/*    printf("mu = %.15f\t  \n",mu); */
 
     for (int n = 0; n < N; n++) {
       delta[n] = z[n] - mu*w[n];

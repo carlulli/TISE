@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
   );
   FILE *fp3;
 
-  fp3 = fopen("input_parameters.txt", "w");
+  fp3 = fopen("output/input_parameters.txt", "w");
   fprintf(fp3,
     "Input parameters you chose your simulation.\n"
     "NUM\t%s\n" "mass\t%s\n" "potential number\t%s\n" "tolrance\t%s\n" "residue\t%s\n",
@@ -119,8 +119,8 @@ int main(int argc, char* argv[]) {
   avg_p = get_avgp(eigenstate);
   delta_p = get_deltap(eigenstate);
 
-  printf("NOTICE: If the position width = %f is close to N/2 = %d, you are getting finite volume effects!\n"
-  "Simulate with larger N!", delta_x, N/2);
+  printf("[main.c | ] NOTICE: If the position width = %f is close to N/2 = %d, you are getting finite volume effects!\n"
+  "\t If so, you should be simulating with larger N!\n", delta_x, N/2);
 
   /****************************************************************************
   create file with eigenstate values
@@ -129,7 +129,7 @@ int main(int argc, char* argv[]) {
   ****************************************************************************/
   FILE *fp1;
 
-  fp1 = fopen("output_ES.txt", "w");
+  fp1 = fopen("output/output_ES.txt", "w");
   fprintf(fp1, "n\tREAL(eigenstate[n])\tIMAG(eigenstate[n])");
   for (int i=0; i<N; i++) {
     fprintf(fp1, "%f\t%f\n", creal(eigenstate[i]), cimag(eigenstate[i]));
@@ -142,7 +142,7 @@ int main(int argc, char* argv[]) {
   ****************************************************************************/
   FILE *fp2;
 
-  fp2 = fopen("output_observ.txt", "w");
+  fp2 = fopen("output/output_observ.txt", "w");
   fprintf(fp2,
     "eigenvalue\t%f\n" "<x^>\t%f\n" "delta_n\t%f\n" "<p^>\t%f\n" "delta_n\t%f",
     eigenvalue, avg_x, delta_x, avg_p, delta_p
