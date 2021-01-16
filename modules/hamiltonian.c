@@ -56,7 +56,7 @@ void set_potential(int pot) {
 		set_wall_potential();
 	}
 	else {
-		printf("No potential assigned\n");
+		printf("[hamiltonian.c | set_potentila()] No potential assigned! Possibel choices 0,1,2,3\n");
 		exit(-1);
 	}
 }
