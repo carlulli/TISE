@@ -14,3 +14,5 @@ double get_deltap(double complex *psi);
 double get_avgsqr_p(double complex *psi);
 
 double Normal(double complex *psi);
+
+/**/
