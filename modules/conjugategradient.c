@@ -43,7 +43,7 @@ void conj_grad ( double complex b[], double complex x[], void(*pfunc)(double com
     double complex p[N];
     double complex Ap[N];
     double complex Ax[N] ;
-    double accuracy = 1* 10^(-3);
+    double accuracy = 1*e-3;
 
     double complex dot_product(double complex a[], double complex b[], int length);
 
@@ -95,7 +95,7 @@ void conj_grad ( double complex b[], double complex x[], void(*pfunc)(double com
 /************************************************************************
     set x = x + alpha * p
 ***************************************************************************/
-        for ( i = 0; i <= N; i++ )
+        for ( i = 0; i < N; i++ )
         {
             x[i] = x[i] + alpha * p[i];
         }
@@ -177,5 +177,3 @@ void conj_grad ( double complex b[], double complex x[], void(*pfunc)(double com
 
 
 }
-
-
