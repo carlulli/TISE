@@ -29,6 +29,7 @@ double power_method(double tol,void (*M)(double complex*,
   double delta_norm = 2*tol;
   /*
   generate random starting vector w[N]
+  Maybe we should initialize a random sinusiod or even sin + icos?
   */
   for(int n = 0; n < N; n++) {
     w[n] = 1.0 * rand()/RAND_MAX +

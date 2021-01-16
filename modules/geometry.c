@@ -91,7 +91,5 @@ int get_N() {
 
 /* prints the currently set parameters */
 void print_N() {
-  printf("The parameters set from the input are: \n"
-    "NUM =\t%d \n",N
-  );
+  printf("The parameters set from the input are: " "NUM =\t%d \n",N );
 }
