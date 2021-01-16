@@ -6,7 +6,7 @@
 
 
 
-
+static double accuracy=0;
 
 double complex dot_product(double complex a[], double complex b[], int length)
 {
@@ -19,11 +19,26 @@ double complex dot_product(double complex a[], double complex b[], int length)
 
 }
 
+/*******************************************************************************
+set_res initialzes the residue value by assigning the 5th input parameter to res
+*******************************************************************************/
+void set_res(char *argv[]) {
+  double val = 0;
+  val = atof(argv[5]);
+  if (val > 0) { accuracy = val; }
+  else {
+    printf("[conjugategradient | set_residue()] ERROR: residue has to be > 0!");
+    exit(-1);
+  }
+}
 
-
-
-
-
+double get_res() {
+  if (accuracy == 0) {
+    printf("[conjugategradient | set_res()] ERROR: Residue not initialzed yet!");
+    exit(-1);
+  }
+  return accuracy; 
+}
 
 
 void conj_grad ( double complex b[], double complex x[], void(*pfunc)(double complex *, double complex*))    // § need to change the parameters of pfunc depending on which pfunc
@@ -41,7 +56,7 @@ void conj_grad ( double complex b[], double complex x[], void(*pfunc)(double com
     double complex p[N];
     double complex Ap[N];
     double complex Ax[N] ;
-    double accuracy = 1.e-3;
+/*    double accuracy = 1.e-3; */
 
     double complex dot_product(double complex a[], double complex b[], int length);
 
@@ -167,11 +182,5 @@ void conj_grad ( double complex b[], double complex x[], void(*pfunc)(double com
 
     }
 
-
-
     return;
-
-
-
-
 }

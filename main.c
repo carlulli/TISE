@@ -66,7 +66,7 @@ int main(int argc, char* argv[]) {
   int N = get_N();
   print_N();
   double m = atof(argv[2]);
-  set_residue(atof(argv[5]));
+  set_res(argv);
   set_kinetic_params(m);
   set_potential(atoi(argv[3]));
   print_hamiltonian_info();
