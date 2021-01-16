@@ -112,7 +112,8 @@ void set_wall_potential() {
 void set_Hdefpos() {
 	int i;
 	for(i = 0; i < N; i++) {
-		if(V[i] < min) { min == V[i];
+		if(V[i] < min) {
+			min = V[i] ;
 		}
 	}
 	for(int j = 0; j < N; j++) {
