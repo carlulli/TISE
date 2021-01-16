@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <complex.h>
 #include <math.h>
+#include "geometry.h"
 
 
 
@@ -31,10 +32,7 @@ void conj_grad ( double complex b[], double complex x[], void(*pfunc)(double com
 */
 {
 
-
-   //int get_N();
-    //N = get_N();
-
+    int N = get_N();
     int i;    // for the loops
     double  rsold;
     double  rsnew;
@@ -43,7 +41,7 @@ void conj_grad ( double complex b[], double complex x[], void(*pfunc)(double com
     double complex p[N];
     double complex Ap[N];
     double complex Ax[N] ;
-    double accuracy = 1*e-3;
+    double accuracy = 1.e-3;
 
     double complex dot_product(double complex a[], double complex b[], int length);
 
