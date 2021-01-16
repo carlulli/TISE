@@ -2,5 +2,5 @@
 
 // test
 void conj_grad ( double complex b[], double complex x[], void(*pfunc)(double complex *, double complex*));
-void set_residue(double res);
-double get_residue();
+void set_res(char *argv[]);
+double get_res();

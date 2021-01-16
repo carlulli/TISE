@@ -27,7 +27,7 @@ void set_params(int argc, char *argv[]){
   val = atoi(argv[1]);
   if (argc < 2) {
     printf("[ geometry.c| set_params ] ERROR! You forgot your NUM, A and EPS parameters.\n"
-  "Remeber: executable [NUM] [Lattice Spacing] [Tolerance]!\n");
+    "Remeber: executable [NUM] [Lattice Spacing] [Tolerance]!\n");
     exit(-1);
   }
 
