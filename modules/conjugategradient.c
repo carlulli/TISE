@@ -21,6 +21,8 @@ double complex dot_product(double complex a[], double complex b[], int length)
 
 /*******************************************************************************
 set_res initialzes the residue value by assigning the 5th input parameter to res
+get_res returns residue
+residue is called accuracy inside conjugategradient.c
 *******************************************************************************/
 void set_res(char *argv[]) {
   double val = 0;
