@@ -1,0 +1,54 @@
+
+
+\noindent
+\begin{tabularx}{\textwidth}{ c | X | X }
+ \multicolumn{3}{ c }{Shell script table}\\
+\hline
+Name & Description & Instruction \\
+\hline
+\rotatebox[origin=tr]{90}{~\small{{\fontfamily{qcr}\selectfont simulation\_all\_gogo.sh}}~}
+ & Script starts all other scripts to run one or a series of simulations. 
+ & Specifics have to be adjusted by hand (commenting in/out): 
+ \begin{enumerate}
+     \item Declaration of parameters as lists (A\_VAR, N\_VAR, S\_VAR, E\_VAR, M\_VAR)
+     \item Adjustment of corresponding base for directory name
+     \item Selection of corresponding loop for set of simulation runs
+     \item Selection of corresponding script to create directories (difference if one or two parameters vary)
+ \end{enumerate} 
+ The script is called in the master directory by
+ 
+{\fontfamily{qcr}\selectfont \$ scripts/simulation\_all\_gogo.sh} 
+ \\
+ \hline
+ \rotatebox[origin=tr]{90}{~\small{{\fontfamily{qcr}\selectfont create\_dir.sh}}~} 
+ & 
+ Script to automatically change the parameters it is called with in the {\fontfamily{qcr}\selectfont params.txt} file, delete old symlinks in the master directory, create a new directory and link structure as described in \autoref{cd instlltn}. 
+ & 
+ The script has to be called with chosen parameter from the master directory by e.g.: {\fontfamily{qcr}\selectfont scripts/create\_dir.sh 64} for NUM = 64.
+ \\
+ \hline
+ \rotatebox[origin=tr]{90}{~\small{{\fontfamily{qcr}\selectfont create\_STEPSEPS.sh}}~} &
+ Same as above just for two parameters simultaneously. &
+ Same as above just use two parameters, e.g.: {\fontfamily{qcr}\selectfont scripts/create\_dir.sh 64 0.6} for NUM = 64 and A = 0.6. \\
+\hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{ c | X | X }
+ \multicolumn{3}{ c }{Python script table}\\
+\hline
+Name & Description & Instruction \\
+\hline
+\rotatebox[origin=tr]{90}{~\small{{\fontfamily{qcr}\selectfont NUMplot.py}}~} &
+Creates plots: $E_b(A)$, $E_b(A^2)$, $a_0(A)$ &
+Called using atom hydrogen package. Needs python3. \\
+\hline
+\rotatebox[origin=tr]{90}{~\small{{\fontfamily{qcr}\selectfont a0-/Eb(M)plot.py }}~} &
+Creates $a_0(M)$ and $E_b(M)$ plots. &
+Same as above \\
+\hline
+\rotatebox[origin=tr]{90}{~\small{{\fontfamily{qcr}\selectfont calcBOHR\_A/-M.py}}~} &
+Calculates $a_0/A$ and $a_0$ for A and M plots &
+Same as above \\
+\hline
+\end{tabularx}
+
