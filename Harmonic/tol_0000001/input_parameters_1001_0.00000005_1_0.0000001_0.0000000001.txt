@@ -1,0 +1,6 @@
+Input parameters you chose your simulation.
+NUM	1001
+mass	0.00000005
+potential number	1
+tolrance	0.0000001
+residue	0.0000000001
