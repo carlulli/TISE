@@ -144,11 +144,14 @@ int main(int argc, char* argv[]) {
   The get_ functions should probably be defined in a seperate module
   Alternatively they can be defined in here.
   ****************************************************************************/
-  double avg_x, delta_x, avg_p, delta_p;
+  double avg_x, delta_x, avg_p, delta_p, avg_ekin, avg_epot, avg_estate;
   avg_x = get_avgx(eigenstate);
   delta_x = get_deltax(eigenstate);
   avg_p = get_avgp(eigenstate);
   delta_p = get_deltap(eigenstate);
+  avg_ekin = average_kinetic_energy(eigenstate);
+  avg_epot = average_potential_energy(eigenstate);
+  avg_estate = average_state_energy(eigenstate);
 
   printf("[main.c | ] NOTICE: If the position width = %f is close to N/2 = %d, you are getting finite volume effects! "
   "\t If so, you should be simulating with larger N!\n", delta_x, N/2);
@@ -191,8 +194,8 @@ int main(int argc, char* argv[]) {
 
   fp2 = fopen(filename2, "w");
   fprintf(fp2,
-    "eigenvalue\t%f\n" "<x^>\t%f\n" "delta_n\t%f\n" "<p^>\t%f\n" "delta_n\t%f",
-    eigenvalue, avg_x, delta_x, avg_p, delta_p
+    "eigenvalue\t%f\n" "<x^>\t%f\n" "delta_n\t%f\n" "<p^>\t%f\n" "delta_n\t%f\n" "avg_ekin\t%f\n" "avg_epot\t%f\n" "avg_estate\t%f\n",
+    eigenvalue, avg_x, delta_x, avg_p, delta_p, avg_ekin, avg_epot, avg_estate
   );
 
   fclose(fp2);
