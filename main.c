@@ -28,6 +28,16 @@ void H_inv(double complex *in, double complex *out){
 }
 //void (*pH_inv)(double complex *in, double complex *out);
 //pH_inv = &H_inv;
+
+/*******************************************************************************
+Function to calculate length of given string
+*******************************************************************************/
+int my_strlen(char *string)
+{
+    int i;
+    for(i=0;string[i]!='\0';i++);
+    return i;
+}
 /*******************************************************************************
 calling main with parameters argv:
   argv[1] = N
@@ -46,8 +56,16 @@ int main(int argc, char* argv[]) {
     argv[1], argv[2], argv[3], argv[4], argv[5]
   );
   FILE *fp3;
+  int nam3size = 34;
+  for (int i=1; i<=5; i++) { nam3size += my_strlen(argv[i]); }
+  char filename3[nam3size];
 
-  fp3 = fopen("output/input_parameters.txt", "w");
+  snprintf(
+    filename3, sizeof(filename3),
+    "output/input_parameters_%s_%s_%s_%s_%s.txt", argv[1], argv[2], argv[3], argv[4], argv[5]
+  );
+
+  fp3 = fopen(filename3, "w");
   fprintf(fp3,
     "Input parameters you chose your simulation.\n"
     "NUM\t%s\n" "mass\t%s\n" "potential number\t%s\n" "tolrance\t%s\n" "residue\t%s\n",
@@ -141,8 +159,16 @@ int main(int argc, char* argv[]) {
   ATTENTION: maybe the last \n might make problems when reading in the file again
   ****************************************************************************/
   FILE *fp1;
+  int nam1size = 19;
+  for (int i=1; i<=5; i++) { nam1size += my_strlen(argv[i]); }
+  char filename1[nam1size];
 
-  fp1 = fopen("output/output_ES.txt", "w");
+  snprintf(
+    filename1, sizeof(filename1),
+    "output/ES_%s_%s_%s_%s_%s.txt", argv[1], argv[2], argv[3], argv[4], argv[5]
+  );
+
+  fp1 = fopen(filename1, "w");
   fprintf(fp1, "n\tREAL(eigenstate[n])\tIMAG(eigenstate[n])\n");
   for (int i=0; i<N; i++) {
     fprintf(fp1, "%d\t%f\t%f\n", i, creal(eigenstate[i]), cimag(eigenstate[i]));
@@ -154,8 +180,16 @@ int main(int argc, char* argv[]) {
   create file with eigenvalue and the other observables
   ****************************************************************************/
   FILE *fp2;
+  int nam2size = 24;
+  for (int i=1; i<=5; i++) { nam2size += my_strlen(argv[i]); }
+  char filename2[nam2size];
 
-  fp2 = fopen("output/output_observ.txt", "w");
+  snprintf(
+    filename2, sizeof(filename2),
+    "output/observ_%s_%s_%s_%s_%s.txt", argv[1], argv[2], argv[3], argv[4], argv[5]
+  );
+
+  fp2 = fopen(filename2, "w");
   fprintf(fp2,
     "eigenvalue\t%f\n" "<x^>\t%f\n" "delta_n\t%f\n" "<p^>\t%f\n" "delta_n\t%f",
     eigenvalue, avg_x, delta_x, avg_p, delta_p
