@@ -10,7 +10,7 @@ MDIR="./modules"
 TDIR="./test"
 SDIR="./scripts"
 
-gcc -o ${SDIR}/main.o -I ${IDIR} ${MDIR}/geometry.c ${MDIR}/hamiltonian.c ${MDIR}/powermethod.c ${MDIR}/observables.c ${MDIR}/linearalgebra.c ${MDIR}/conjugategradient.c main.c -lm
+gcc -o main.o -I ${IDIR} ${MDIR}/geometry.c ${MDIR}/hamiltonian.c ${MDIR}/powermethod.c ${MDIR}/observables.c ${MDIR}/linearalgebra.c ${MDIR}/conjugategradient.c main.c -lm
 gcc -o ${TDIR}/analytic.o -I ${IDIR} ${MDIR}/geometry.c ${MDIR}/hamiltonian.c ${MDIR}/linearalgebra.c ${MDIR}/assert.c ${TDIR}/analytic.c -lm
 gcc -o ${TDIR}/geometrytest.o -I ${IDIR} ${MDIR}/geometry.c ${TDIR}/geometrytest.c -lm
 gcc -o ${TDIR}/hermitian.o -I ${IDIR} ${MDIR}/geometry.c ${MDIR}/hamiltonian.c ${MDIR}/wavefunction.c ${MDIR}/linearalgebra.c ${MDIR}/assert.c ${TDIR}/hermitian.c -lm

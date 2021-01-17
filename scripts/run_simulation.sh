@@ -27,4 +27,4 @@ for (( i=0 ; i < $SIZE ; i++ )); do
   TOL=${TOL_VAR[i}
   RES=${RES_VAR[i}
   echo "RUNNING your simulation number: ${i}!!"
-  ./main.o ${NUM} ${M} ${POT} ${TOL} ${RES}
+  ../main.o ${NUM} ${M} ${POT} ${TOL} ${RES}
