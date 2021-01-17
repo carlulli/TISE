@@ -3,15 +3,15 @@
 
 #include <complex.h>
 
-#define dcompl double complex
 
-dcompl scalar_product(dcompl* a, dcompl* b,int N);
+
+double complex scalar_product(double complex* a, double complex* b,int N);
 /* takes two complex vectors and the lenght of the vectors
 and retruns one complex number */
 
 
 
-double norm(dcompl* a,int N);
+double norm(double complex* a,int N);
 /*analogous but only computes the norm*/
 
 
