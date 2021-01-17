@@ -25,12 +25,6 @@ eps (tolerance), around 10e-15;
 void set_params(int argc, char *argv[]){
   int val;
   val = atoi(argv[1]);
-  if (argc < 2) {
-    printf("[ geometry.c| set_params ] ERROR! You forgot your NUM, A and EPS parameters.\n"
-    "Remeber: executable [NUM] [Lattice Spacing] [Tolerance]!\n");
-    exit(-1);
-  }
-
   if (val > 1 && val % 2) {
     N = val;
   } else {

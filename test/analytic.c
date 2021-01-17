@@ -26,8 +26,8 @@ void set_sinwave(double complex *psi,int k)
 }
 
 int main (int argc, char *argv[]) {
-  assert(argc==2,_FILE_NAME_,"main","Usage: analytic N\nwhere N is the number of lattice points");
-
+  assert(argc== 2,_FILE_NAME_,"main","Usage: analytic N\nwhere N is the number of lattice points");
+  /* HERE THE MASS IS HARDCODED */
   double mass = 2.3513;
   set_params(argc,argv);
   N = get_N();
