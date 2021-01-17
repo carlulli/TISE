@@ -17,6 +17,11 @@ void set_kinetic_params(double m) {
 	if(temp==0 ) {
 	N = get_N();
 	V = malloc(sizeof(double)*N);
+	if(V == NULL)
+    {
+        printf("Error! memory not allocated.");
+    }
+
 	temp++;
 }
 	else{
@@ -85,20 +90,23 @@ void set_zero_potential() {
 
 
 void set_harmonic_potential() {
+	printf("\n\nharmonic potential \n");
 	double	k = 1;
 	int i;
 	for(i = 0 ; i < N ; i++)	{
 
-	V[i] = 0.5*k * (i - (N-1)/2*(N-1)/2);
+	V[i] = 0.5*k * (i - (N-1)/2)*(i-(N-1)/2);
 	}
 }
 
 void set_well_potential() {
 	double eps = 1;
+	int a = (int)N/4;
 	for(int j = 0; j < N; j++) {
-		V[j] = 0;
-		while(j > N/4-2 && j < 3/4*N) {
-			V[j] = eps;
+		V[j] = eps;
+		while(j > a && j < N-a) {
+			V[j] = 0;
+			j +=1;
 		}
 	}
 }
@@ -107,14 +115,16 @@ void set_wall_potential() {
 	double eps = 1;
 	for(int j = 0; j < N; j++) {
 		V[j] = 0;
-		while(j > N/4-2 && j < 3/4*N) {
-			V[j] = - eps;
+		while(j > (N+1)/2 && j < N) {
+			V[j] =  eps;
+			j += 1;
 		}
 	}
 }
 
 void set_Hdefpos() {
 	int i;
+	double min = 0;
 	for(i = 0; i < N; i++) {
 		if(V[i] < min) {
 			min = V[i] ;

@@ -3,6 +3,7 @@
 #include <complex.h>
 #include <math.h>
 #include "geometry.h"
+#include "hamiltonian.h"
 
 
 
@@ -51,6 +52,10 @@ void conj_grad ( double complex b[], double complex x[], void(*pfunc)(double com
 
     int N = get_N();
     int i;    // for the loops
+    for ( i = 0; i < N; i++ )
+    {
+      printf("\n conj grad kriegt\n b \t x \n %f \t%f \t %f \n ",creal(b[i]),cimag(b[i]),creal(x[i]) );
+    }
     double  rsold;
     double  rsnew;
     double complex alpha;
@@ -65,9 +70,16 @@ void conj_grad ( double complex b[], double complex x[], void(*pfunc)(double com
 /************************************************************************
     1. calcultate A*x
 ***************************************************************************/
-
+for(int n = 0; n < N; n++) {
+  x[n] = 1.0 * rand()/RAND_MAX +
+  1.0 * rand()/RAND_MAX*I;
+}
     pfunc(x, Ax);
 
+    for(int i = 0; i < N; i++)
+    {
+        printf("\n%f, und imaginär %f ",creal(Ax[i]),cimag(Ax[i]));
+    }
 /********************************************************
      2. initialize r = b-Ax0
 ***************************************/

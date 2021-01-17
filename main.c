@@ -20,10 +20,14 @@ H_inv:
   - calls the conjugate gradient with these vectors and
     the hamiltonian that has to be set before
 *******************************************************************************/
+//void H_defpos(double complex *in, double complex *out);
+//void (*pH_defpos)(double complex *in, double complex *out);
+ //pH_defpos = &H_defpos;
 void H_inv(double complex *in, double complex *out){
   conj_grad(in, out, &H_defpos);
 }
-
+//void (*pH_inv)(double complex *in, double complex *out);
+//pH_inv = &H_inv;
 /*******************************************************************************
 calling main with parameters argv:
   argv[1] = N
@@ -70,6 +74,8 @@ int main(int argc, char* argv[]) {
   set_kinetic_params(m);
   set_potential(atoi(argv[3]));
   print_hamiltonian_info();
+  set_res(argv);
+  get_res();
   /****************************************************************************
   calculating the largest eigenvalue and eigenvector of the inverse of H
   power method to calculate largest eigenvalue is called with:
@@ -86,6 +92,10 @@ int main(int argc, char* argv[]) {
      - double v[N] = eigenstate corresponding to groundstate energy
   ****************************************************************************/
   double complex eigenstate[N];
+  for(int i = 0; i < N; i++)
+  {
+      eigenstate[i] = 1.0 * rand()/RAND_MAX + 1.0 * rand()/RAND_MAX *I;
+  }
   double eigenvalue;
   /* if tol is handled inside power method module, it needs a set_tol() and
   does not need to be passed the tolerance
