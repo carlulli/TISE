@@ -11,6 +11,8 @@ static double mass;
 static double *V;
 static double min; //minimum value of the potential;
 
+
+/* Sets the mass and initializes the V array in accordance to the N passed by the user*/
 void set_kinetic_params(double m) {
 	mass = m;
 	static int temp = 0;
@@ -29,7 +31,7 @@ void set_kinetic_params(double m) {
 	}
 
 }
-
+/* unfortunate attempt to avoid using set_potential  */
 /*void set_potential(const char* fname, union Potential potential ){
 	if strcmp(fname, "ZERO") == 0 {
 		set_zero_potential();
@@ -46,6 +48,8 @@ void set_kinetic_params(double m) {
 	}
 }
 */
+
+/* sets the potential tied to a number passed by the user */
 void set_potential(int pot) {
 
 	if(pot == 0) {
@@ -90,7 +94,6 @@ void set_zero_potential() {
 
 
 void set_harmonic_potential() {
-	printf("[hamiltonian.c | set_harmonic_potential()] Harmonic potential set!\n");
 	double	k = 1;
 	int i;
 	for(i = 0 ; i < N ; i++)	{
@@ -121,7 +124,7 @@ void set_wall_potential() {
 		}
 	}
 }
-
+/* makes the hamiltonian definite positive by shifting it by the lowest point of the potential */
 void set_Hdefpos() {
 	int i;
 	double min = 0;
