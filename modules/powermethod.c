@@ -47,7 +47,7 @@ double power_method(double tol,void (*M)(double complex*,
 
     for (int n = 0; n < N; n++) {
       out_ev[n] = w[n];
-      printf("\n %f",creal(w[n]));
+    // testing  printf("\n %f",creal(w[n]));
     }
     for (int n = 0; n < N; n++) {
     w[n] = z[n]/mu;

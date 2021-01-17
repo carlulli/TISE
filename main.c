@@ -104,7 +104,9 @@ int main(int argc, char* argv[]) {
   printf("Powermethod tolerance =\t%f\n", tol);
 /* power_method(tol, &H_inv(), eigenstate) where H_inv() also gets N  */
   eigenvalue = power_method(tol, &H_inv, eigenstate);
-
+  for(int i = 0;i < N;i++){
+    printf("\n %f and  imag %f  of the eigenstate",creal(eigenstate[i]), cimag(eigenstate[i]));
+  }
   /* getting the actual ev of H
      needs a get_k() from the hamiltonian
      I am not to sure about when we need to substract or add

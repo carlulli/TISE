@@ -52,10 +52,16 @@ void conj_grad ( double complex b[], double complex x[], void(*pfunc)(double com
 
     int N = get_N();
     int i;    // for the loops
+    /*********************************
+    testing
+    ************************************/
+
+  /*  
     for ( i = 0; i < N; i++ )
     {
       printf("\n conj grad kriegt\n b \t x \n %f \t%f \t %f \n ",creal(b[i]),cimag(b[i]),creal(x[i]) );
-    }
+    }*/
+
     double  rsold;
     double  rsnew;
     double complex alpha;
@@ -76,10 +82,14 @@ for(int n = 0; n < N; n++) {
 }
     pfunc(x, Ax);
 
-    for(int i = 0; i < N; i++)
+    /*******************************************************
+    testing
+    **********************************************************/
+
+  /*  for(int i = 0; i < N; i++)
     {
         printf("\n%f, und imaginär %f ",creal(Ax[i]),cimag(Ax[i]));
-    }
+    }*/
 /********************************************************
      2. initialize r = b-Ax0
 ***************************************/
@@ -144,7 +154,7 @@ for(int n = 0; n < N; n++) {
    print rsnew for testing
 ***************************************************************************/
 
-        printf("[conjugategradient.c | ] INFO: rsnew\t%f  \n",rsnew);
+      //  printf("[conjugategradient.c | ] INFO: rsnew\t%f  \n",rsnew);
 
 /************************************************************************
    break condition
@@ -170,7 +180,8 @@ for(int n = 0; n < N; n++) {
    prints loop number and can print x
 ***************************************************************************/
 
-        printf("[conjugategradient.c | ]  loop number %i\n",it);
+        //printf("[conjugategradient.c | ]  loop number %i\n",it);
+
         /*printf("\n x bei loop %i\n",it);
         for(int i = 0; i < N; i++)
         {
