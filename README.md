@@ -14,7 +14,7 @@ Inside TISE:
   - main.c: The main.c file to compile prior to running simulations.
   - compile.sh: a shell script that compiles the main.c code
 
-###Running the code
+### Running the code
 After downloading and saving the code structure, run ``` compile.sh ``` from within the TISE directory to compile the code.
 (Reminder: include compiling code for the test codes.)
 
@@ -28,7 +28,7 @@ The parameters are as follows:
 
  Running the testing: ??
 
-###About the modules
+### bout the modules
 
 - asser.c:
 
@@ -44,7 +44,7 @@ The parameters are as follows:
 
 - powermethod.c: a method that calculates the largest eigenvalue of given matrix. Takes as input a matrix (in this case the inverse hamiltonian) and output vector. Writes eigenstate as output vector and returns eigenvalue.
 
-###About the testing
+### About the testing
 
 - analytic.c:
 - geometrytest.c:
