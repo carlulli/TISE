@@ -17,9 +17,9 @@ static int N = 0;
 
 
 int main (int argc, char* argv[]) {
-/*  assert(argc==3,_FILE_NAME_,"main","Usage:
+  assert(argc==3,_FILE_NAME_,"main","Usage:
   analytic N\nwhere N is the number of lattice
-  points\n  And the second digit the assigned potential");*/
+  points\n  And the second digit the assigned potential");
   double mass = atof(argv[2]);
   set_params(argc,argv);
   set_kinetic_params(mass);
