@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
   printf(
     "STARTING your TISE calculations with desired input parameters: \n"
     "NUM = %s\n" "mass = %s\n" "potential number = %s\n"
-    "tolrance for powermethod = %s\n" "residue for conjugate gradient = %s\n",
+    "tolrance for powermethod = %s\n" "residue for conjugate gradient = %s\n\n",
     argv[1], argv[2], argv[3], argv[4], argv[5]
   );
   FILE *fp3;
@@ -105,7 +105,7 @@ int main(int argc, char* argv[]) {
 /* power_method(tol, &H_inv(), eigenstate) where H_inv() also gets N  */
   eigenvalue = power_method(tol, &H_inv, eigenstate);
   for(int i = 0;i < N;i++){
-    printf("\n %f and  imag %f  of the eigenstate",creal(eigenstate[i]), cimag(eigenstate[i]));
+    printf("Eigenstate Psi = %f + i %f \n",creal(eigenstate[i]), cimag(eigenstate[i]));
   }
   /* getting the actual ev of H
      needs a get_k() from the hamiltonian
@@ -132,7 +132,7 @@ int main(int argc, char* argv[]) {
   avg_p = get_avgp(eigenstate);
   delta_p = get_deltap(eigenstate);
 
-  printf("[main.c | ] NOTICE: If the position width = %f is close to N/2 = %d, you are getting finite volume effects!\n"
+  printf("[main.c | ] NOTICE: If the position width = %f is close to N/2 = %d, you are getting finite volume effects! "
   "\t If so, you should be simulating with larger N!\n", delta_x, N/2);
 
   /****************************************************************************
@@ -143,9 +143,9 @@ int main(int argc, char* argv[]) {
   FILE *fp1;
 
   fp1 = fopen("output/output_ES.txt", "w");
-  fprintf(fp1, "n\tREAL(eigenstate[n])\tIMAG(eigenstate[n])");
+  fprintf(fp1, "n\tREAL(eigenstate[n])\tIMAG(eigenstate[n])\n");
   for (int i=0; i<N; i++) {
-    fprintf(fp1, "%f\t%f\n", creal(eigenstate[i]), cimag(eigenstate[i]));
+    fprintf(fp1, "%d\t%f\t%f\n", i, creal(eigenstate[i]), cimag(eigenstate[i]));
   }
   fclose(fp1);
 
