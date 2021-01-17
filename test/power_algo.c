@@ -8,9 +8,9 @@
 
 #include "powermethod.h"
 #include "geometry.h"
+#include "linearalgebra.h"
 
 
-//
 double complex* M;
 static int N = 5;
 
@@ -31,10 +31,10 @@ void initialize_M() {
     for(int j = 0; j < N; j++) {
       sum = 0;
       for(int k = 0; k < N; k++){
-        sum += conj(A[i][k])*A[k][j];
+        sum += conj(A[k][i])*A[k][j];
       }
       M[i*N + j] = sum;
-      printf("M[%d][%d] = %f %f\n",i,j,creal(sum) ,cimag(sum));
+      //printf("M[%d][%d] = %f %f\n",i,j,creal(sum) ,cimag(sum));
     }
   }
 }
@@ -56,12 +56,32 @@ int main(int argc, char* argv[]) {
   //use geometry.h to take the parameter
   set_params(argc,argv);
   N = get_N();
-  double complex out_ev[N];
   double tol = atof(argv[2]);
+  double complex out_ev[N];
   void (*ptr)(double complex*,double complex*) = Mvect;
 
   initialize_M();
   double mu = power_method(tol,ptr,out_ev);
+  printf("final mu = %f \n",mu);
+
+  /* Here we study the distance between the two the analytical result and the approximated eigenvalue/eigenvector
+  */
+
+  double complex Mw_out[N],muw_out[N],delta[N];
+
+  for(int i = 0; i < N; i++) {
+    muw_out[i]  = mu*out_ev[i];
+  }
+
+  Mvect(out_ev,Mw_out);
+
+  for(int i = 0; i < N; i++) {
+
+    delta[i] = Mw_out[i] - muw_out[i];
+  }
+
+  printf("Computing || Mw - muw|| = %.12e < %.12e\nIf the output is smaller than the tolerance input, the test is correct!\n",norm(delta,N), tol);
+
   free(M);
   return 0;
 }
