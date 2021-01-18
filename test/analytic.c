@@ -13,7 +13,7 @@
 
 #define dcompl double complex
 
-#define _FILE_NAME_ "test/hamiltonian/analytic.c"
+#define _FILE_NAME_ "test/analytic.c"
 
 static int N = 0;
 
@@ -31,7 +31,6 @@ int main (int argc, char *argv[]) {
   double mass = 2.3513;
   set_params(argc,argv);
   N = get_N();
-  //set_N(N);//put the parameter into geometry.c
   set_kinetic_params(mass);//define parameters in hamiltonian
   set_zero_potential();//sets a potential of 0
   print_hamiltonian_info();

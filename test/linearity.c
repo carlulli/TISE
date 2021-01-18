@@ -12,7 +12,7 @@
 #include "hamiltonian.h"
 #include "wavefunction.h"
 
-#define _FILE_NAME_ "test/new_hamiltonian/linearity.c"
+#define _FILE_NAME_ "test/linearity.c"
 
 
 int main (int argc, char* argv[]) {
@@ -37,12 +37,12 @@ int main (int argc, char* argv[]) {
   set_random_wavefunction(psi,N);
   set_random_wavefunction(theta,N);
 
-  /* test printf to check good functions
+  /* test printf to check good functions */
   for(int i = 0; i < N; i++) {
     printf("psi[%d]  = %f %fi\n",i, creal(psi[i]),cimag(psi[i]));
   }
   printf("norm psi = %f \nnorm theta = %f\n", norm(psi,N),norm(theta,N));
-  */
+
   /* generate two random coefficients */
   srand(time(NULL));
   alpha = 1.0*rand()/RAND_MAX + 1.0*rand()/RAND_MAX*I;
