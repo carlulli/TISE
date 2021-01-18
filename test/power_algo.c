@@ -50,6 +50,9 @@ void Mvect(double complex* in, double complex* out) {
   }
 
 }
+
+
+#define _FILE_NAME_ "test/power_algo.c"
 // takes parameters N dimension of the vector and tolerance tol for the testing
 int main(int argc, char* argv[]) {
 
@@ -59,7 +62,7 @@ int main(int argc, char* argv[]) {
   N = get_N();
   double tol = atof(argv[2]);
   double complex out_ev[N];
-  double mu
+  double mu;
   void (*ptr)(double complex*,double complex*) = Mvect;
 
   initialize_M();

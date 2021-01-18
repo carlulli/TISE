@@ -124,7 +124,7 @@ void set_wall_potential() {
 		}
 	}
 }
-/* makes the hamiltonian definite positive by shifting it by the lowest point of the potential */
+/* makes the hamiltonian definite positive by shifting V by the lowest point */
 void set_Hdefpos() {
 	int i;
 	double min = 0;
@@ -141,6 +141,7 @@ void set_Hdefpos() {
 double get_minV() {
 	return min;
 }
+
 void H_defpos(double complex *in, double complex *out) {
 	set_Hdefpos();
 	H(in,out);
@@ -160,9 +161,9 @@ void H(double complex *in, double complex *out) {
 	delta[N-1] = in[N-2] -2*in[N-1];
 
 
-	for (i = 0; i < N; i++) {//applies H to in vector
+	for (i = 0; i < N; i++) {//applies H to input vector
 
-		 out[i] = - 1 / (2 * mass) * (delta[i]) + V[i] * in[i];
+		 out[i] = - 1 / (2 * mass) * (delta[i]) + V[i] * in[i]; //writes into the output vector
 
 	 }
 }
