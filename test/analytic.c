@@ -13,7 +13,7 @@
 
 #define dcompl double complex
 
-#define _FILE_NAME_ "test/hamiltonian/analytic.c"
+#define _FILE_NAME_ "test/analytic.c"
 
 static int N = 0;
 

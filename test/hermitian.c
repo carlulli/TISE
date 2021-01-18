@@ -11,7 +11,7 @@
 #include "hamiltonian.h"
 #include "wavefunction.h"
 
-#define _FILE_NAME_ "test/new_hamiltonian/hermitian.c"
+#define _FILE_NAME_ "test/hermitian.c"
 
 static int N = 0;
 
@@ -29,7 +29,7 @@ int main (int argc, char* argv[]) {
   //We now wish to study hermitianity
   printf("This program studies the Hermicity of the hamiltonian through its action on a randomly generated wave function \n");
   double complex psi[N],left[N],right[N];
-  set_random_wavefunction(psi);
+  set_random_wavefunction(psi,N);
   for(int i = 0; i < N; i++) {
     printf("psi[%d] = %f %fi\n",i,creal(psi[i]),cimag(psi[i]));
   }

@@ -12,7 +12,7 @@
 #include "hamiltonian.h"
 #include "wavefunction.h"
 
-#define _FILE_NAME_ "test/new_hamiltonian/linearity.c"
+#define _FILE_NAME_ "test/linearity.c"
 
 
 int main (int argc, char* argv[]) {
