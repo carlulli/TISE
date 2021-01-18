@@ -21,7 +21,7 @@ test program:  compiles with gcc -Wall test_conjugate.c -o test_conjugate -lm
 ***************************************************************************/
 
 const int N = 30;
-double complex x[N] = {0};
+double complex x[30] = {0};
 
 
 int getN()
