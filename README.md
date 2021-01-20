@@ -30,7 +30,7 @@ The parameters are as follows:
 
 ### bout the modules
 
-- asser.c:
+- assert.c: Check that the number of parameter input in the bash is the correct one
 
 - conjugategradient.c: Method that calculates M^-1x out of initial Mx=b with input matrix M and vector b
 
@@ -46,8 +46,8 @@ The parameters are as follows:
 
 ### About the testing
 
-- analytic.c:
-- geometrytest.c:
-- hermitian.c:
-- power_algo.c:
-- test_conjugate.c:
+- analytic.c: Calculates the eigenspectrum for the free particle case with the hamiltonian.c module
+- geometrytest.c:tests that the geometrical parameters are correctly stored
+- hermitian.c: tests hermitianity of the hamiltonian.c module
+- power_algo.c: tests the power algorithm for a general def pos matrix
+- test_conjugate.c: tests the conjugate algorthm for a general def pos matrix

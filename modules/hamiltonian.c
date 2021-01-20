@@ -2,14 +2,17 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+
+
 #include "geometry.h"
 #include "linearalgebra.h"
-#include "hamiltonian.h"
+
 /*parameters of the Hamiltonian that need to be set*/
 static int N;
 static double mass;
 static double *V;
 static double min; //minimum value of the potential;
+static int shift = 0;
 
 
 /* Sets the mass and initializes the V array in accordance to the N passed by the user*/
@@ -50,30 +53,6 @@ void set_kinetic_params(double m) {
 */
 
 /* sets the potential tied to a number passed by the user */
-void set_potential(int pot) {
-
-	if(pot == 0) {
-		set_zero_potential();
-		printf("[hamiltonian.c | set_potential()] Chosen POTENTIAL: Zero-potential \n");
-	}
-	else if(pot == 1) {
-		set_harmonic_potential();
-		printf("[hamiltonian.c | set_potential()] Chosen POTENTIAL: harmonic potential \n");
-	}
-	else if(pot == 2 ) {
-		set_well_potential();
-		printf("[hamiltonian.c | set_potential()] Chosen POTENTIAL: well potential \n");
-	}
-	else if(pot == 3) {
-		set_wall_potential();
-		printf("[hamiltonian.c | set_potential()] Chosen POTENTIAL: wall potential \n");
-	}
-	else {
-		printf("[hamiltonian.c | set_potentila()] No potential assigned! Possibel choices 0,1,2,3\n");
-		exit(-1);
-	}
-}
-
 
 void set_coulomb_potential() {
 	int i;
@@ -125,28 +104,57 @@ void set_wall_potential() {
 	}
 }
 /* makes the hamiltonian definite positive by shifting V by the lowest point */
-void set_Hdefpos() {
-	int i;
-	double min = 0;
-	for(i = 0; i < N; i++) {
-		if(V[i] < min) {
-			min = V[i] ;
+
+void set_minV() {
+	double minV = 0;
+	for(int i = 0; i < N; i++) {
+		if(V[i] < minV) {
+			minV = V[i];
 		}
 	}
-	for(int j = 0; j < N; j++) {
-		V[j] += min;
-	}
+	min = minV;
 }
 
+void set_potential(int pot) {
+
+	if(pot == 0) {
+		set_zero_potential();
+		printf("[hamiltonian.c | set_potential()] Chosen POTENTIAL: Zero-potential \n");
+	}
+	else if(pot == 1) {
+		set_harmonic_potential();
+		printf("[hamiltonian.c | set_potential()] Chosen POTENTIAL: harmonic potential \n");
+	}
+	else if(pot == 2 ) {
+		set_well_potential();
+		printf("[hamiltonian.c | set_potential()] Chosen POTENTIAL: well potential \n");
+	}
+	else if(pot == 3) {
+		set_wall_potential();
+		printf("[hamiltonian.c | set_potential()] Chosen POTENTIAL: wall potential \n");
+	}
+	else {
+		printf("[hamiltonian.c | set_potentilal()] No potential assigned! Possibel choices 0,1,2,3\n");
+		exit(-1);
+	}
+	set_minV();
+}
+
+void set_Hdefpos() {
+	if (shift == 0) {
+		for(int j = 0; j < N; j++) {
+		V[j] -= min;
+	}
+	shift++;
+	printf("The Hamiltonian has been made definite positive \n");
+}
+	else {
+		printf("The hamiltonian is already definite positive \n");
+	}
+}
 double get_minV() {
 	return min;
 }
-
-void H_defpos(double complex *in, double complex *out) {
-	set_Hdefpos();
-	H(in,out);
-}
-
 
 void H(double complex *in, double complex *out) {
 
@@ -168,8 +176,16 @@ void H(double complex *in, double complex *out) {
 	 }
 }
 
-double average_state_energy(double complex *psi) {
+void H_defpos(double complex *in, double complex *out) {
+	if(shift == 0) {
+	set_Hdefpos();
+	}
+	H(in,out);
+}
 
+
+
+double average_state_energy(double complex *psi) {
 	double complex Hpsi[N];
 	H(psi,Hpsi);
 
