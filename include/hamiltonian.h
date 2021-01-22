@@ -1,18 +1,8 @@
 #ifndef HAMILTONIAN_H
 #define HAMILTONIAN_H
 
-#include "complex.h"
+#include <complex.h>
 
-/*typedef struct {
-  double eps;
-  int a,b;
-} PotentialTriple;*/
-
-
-/*union  Potential{
-  double k;
-  PotentialTriple potential_triple;
-};*/
 
 /*sets the mass parameter that is used in the hamiltonian*/
 void set_kinetic_params(double m);
@@ -37,6 +27,7 @@ void set_well_potential();
 void set_wall_potential();
 void set_coulomb_potential();
 
+void set_minV();
 void set_Hdefpos();
 double get_minV();
 /*******************************************************************************

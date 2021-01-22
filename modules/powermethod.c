@@ -27,6 +27,7 @@ double power_method(double tol,void (*M)(double complex*,
   double complex delta[N];
   double mu;
   double delta_norm = 2*tol;
+  int iter = 0;
   /*
   generate random starting vector w[N]
   Maybe we should initialize a random sinusiod or even sin + icos?
@@ -44,16 +45,22 @@ double power_method(double tol,void (*M)(double complex*,
     for (int n = 0; n < N; n++) {
       delta[n] = z[n] - mu*w[n];
     }
-
-    for (int n = 0; n < N; n++) {
-      out_ev[n] = w[n];
     // testing  printf("\n %f",creal(w[n]));
-    }
+
     for (int n = 0; n < N; n++) {
     w[n] = z[n]/mu;
     }
     delta_norm = norm(delta,N);
+    iter++;
 
+    if(iter > 100) {
+      printf("The algorithm could not converge, please try again with a higher tolerance \n");
+      exit(-1);
+    }
+    }
+
+    for (int n = 0; n < N; n++) {
+      out_ev[n] = w[n];
     }
     return mu;
 }
