@@ -20,7 +20,7 @@ void initialize_M() {
   M = malloc(sizeof(double complex)*N*N);
   double complex A[N][N];
   double complex sum;
-  srand(time(NULL));
+/*  srand(time(NULL)); is called in beginning of main */
   /* creates random A */
   for (int i = 0; i < N; i++) {
     for (int j = 0; j < N; j++) {
