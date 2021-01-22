@@ -4,21 +4,11 @@
 #include <math.h>
 #include "geometry.h"
 #include "hamiltonian.h"
+#include "linearalgebra.h"
 
 
 
-static double accuracy=0;
-
-double complex dot_product(double complex a[], double complex b[], int length)
-{
-    double complex result = 0.0 + 0 * I;
-    for (int i = 0; i< length; i++)
-    {
-        result += conj(a[i]) * b[i];
-    }
-    return result;
-
-}
+double accuracy;
 
 /*******************************************************************************
 set_res initialzes the residue value by assigning the 5th input parameter to res
@@ -44,24 +34,24 @@ double get_res() {
 }
 
 
-void conj_grad ( double complex b[], double complex x[], void(*pfunc)(double complex *, double complex*))    // § need to change the parameters of pfunc depending on which pfunc
+void conj_grad ( double complex b[], double complex x[], void(*pfunc)(double complex *, double complex*))
 /*   for solving A* x = b  , in our case we do not have A, but a method to get A*x
 
 */
 {
 
     int N = get_N();
-    int i;    // for the loops
-    /*********************************
+    //double accuracy = get_res();
+    int i;
+    /************************************************************************
     testing
-    ************************************/
-
-  /*  
+    **************************************************************************/
+  /*
     for ( i = 0; i < N; i++ )
     {
       printf("\n conj grad kriegt\n b \t x \n %f \t%f \t %f \n ",creal(b[i]),cimag(b[i]),creal(x[i]) );
     }*/
-
+/*******************************************************************************/
     double  rsold;
     double  rsnew;
     double complex alpha;
@@ -69,10 +59,6 @@ void conj_grad ( double complex b[], double complex x[], void(*pfunc)(double com
     double complex p[N];
     double complex Ap[N];
     double complex Ax[N] ;
-/*    double accuracy = 1.e-3; */
-
-    double complex dot_product(double complex a[], double complex b[], int length);
-
 /************************************************************************
     1. calcultate A*x
 ***************************************************************************/
@@ -80,6 +66,7 @@ for(int n = 0; n < N; n++) {
   x[n] = 1.0 * rand()/RAND_MAX +
   1.0 * rand()/RAND_MAX*I;
 }
+
     pfunc(x, Ax);
 
     /*******************************************************
@@ -111,7 +98,7 @@ for(int n = 0; n < N; n++) {
     4. rsold = r' * r
 ***************************************************************************/
 
-    rsold = dot_product(r,r,N);
+    rsold = scalar_product(r,r,N);
 
 /************************************************************************
    This is where the Loop starts
@@ -128,7 +115,7 @@ for(int n = 0; n < N; n++) {
     alpha = rsold / (p'*Ap)
 ***************************************************************************/                                                              //alpha = dot_product(p,r,N) / ( dot_product(p,Ap,N)  ) ;// uses N  /option 1
 
-        alpha = rsold / ( dot_product(p,Ap,N)  ) ;
+        alpha = rsold / ( scalar_product(p,Ap,N)  ) ;
 /************************************************************************
     set x = x + alpha * p
 ***************************************************************************/
@@ -149,7 +136,7 @@ for(int n = 0; n < N; n++) {
    rsnew = r' * r
 ***************************************************************************/                                                                                                                                                //rsnew = dot_product(r,Ap,N);    // uses N   option 1   change
                                                                                                                                         //rsold = dot_product(p,Ap,N);    // option 1             chan
-        rsnew = dot_product(r,r,N);
+        rsnew = scalar_product(r,r,N);
 /************************************************************************
    print rsnew for testing
 ***************************************************************************/
@@ -206,6 +193,10 @@ for(int n = 0; n < N; n++) {
          printf("p%.5f \n",cimag( p[2]));  */
 
     }
-
+    if (sqrt(rsnew) > accuracy)     // uses accuracy
+        {
+            printf("Attention: The desired attention was not achieved, \n instead we only got to %.15f \n", sqrt(rsnew));
+            exit(-1);
+        }
     return;
 }
