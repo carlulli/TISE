@@ -1,0 +1,9 @@
+# File tells git which files and file types to ignore when committing
+
+# ALL Execution files from build.sh
+*.out
+
+# Output files created from running simulations
+# everything indside output except INFO
+output/**
+!output/INFOouput.md
