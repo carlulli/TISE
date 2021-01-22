@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <time.h>
 
 
 #include "geometry.h"
@@ -32,13 +34,15 @@ void H_inv(double complex *in, double complex *out){
 /*******************************************************************************
 Function to calculate length of given string
 *******************************************************************************/
-int my_strlen(char *string)
-{
-    int i;
-    for(i=0;string[i]!='\0';i++);
-    return i;
-}
+// int my_strlen(char *string)
+// {
+//     int i;
+//     for(i=0;string[i]!='\0';i++);
+//     return i;
+// }
+// use from string library: size_t strlen(const char *str)
 /*******************************************************************************
+
 calling main with parameters argv:
   argv[1] = N
   argv[2] = m
@@ -57,7 +61,7 @@ int main(int argc, char* argv[]) {
   );
   FILE *fp3;
   int nam3size = 34;
-  for (int i=1; i<=5; i++) { nam3size += my_strlen(argv[i]); }
+  for (int i=1; i<=5; i++) { nam3size += strlen(argv[i]); }
   char filename3[nam3size];
 
   snprintf(
@@ -79,11 +83,15 @@ int main(int argc, char* argv[]) {
     "You have %d!\n" "Remember: The executable Name is the first parameter.\n", argc);
     exit(-1);
   }
-
+  /*****************************************************************************
+  set seed for random number
+  *****************************************************************************/
+  srand(time(NULL));
 
   /*****************************************************************************
   set hamiltonian with the parameters mass m, potential
   *****************************************************************************/
+
   set_params(argc, argv);
   int N = get_N();
   print_N();
@@ -163,7 +171,7 @@ int main(int argc, char* argv[]) {
   ****************************************************************************/
   FILE *fp1;
   int nam1size = 19;
-  for (int i=1; i<=5; i++) { nam1size += my_strlen(argv[i]); }
+  for (int i=1; i<=5; i++) { nam1size += strlen(argv[i]); }
   char filename1[nam1size];
 
   snprintf(
@@ -184,7 +192,7 @@ int main(int argc, char* argv[]) {
   ****************************************************************************/
   FILE *fp2;
   int nam2size = 24;
-  for (int i=1; i<=5; i++) { nam2size += my_strlen(argv[i]); }
+  for (int i=1; i<=5; i++) { nam2size += strlen(argv[i]); }
   char filename2[nam2size];
 
   snprintf(

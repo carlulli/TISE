@@ -92,7 +92,7 @@ Readbility: is it better to write the if, else if, else like done her
 *******************************************************************************/
 double avgp(double complex *psi) {
   int N = get_N();
-  double sum;
+  double sum=0.0;
   for (int n=0; n<N; n++) {
     if (n==0) { sum +=  (-I) * conj(psi[n]) * (psi[n+1])/2; }
     else if (n==N-1) { sum +=  (-I) * conj(psi[n]) * ((-1)*psi[n-1])/2; }
@@ -117,25 +117,20 @@ ATTENTION: here we use Dirichlet Boundary Conditions,
 *******************************************************************************/
 double avgsqr_p(double complex *psi) {
   int N = get_N();
-  double sum;
-  double complex z;
+  double sum = 0.0;
   for (int n=0; n<N; n++) {
     if (n==0) {
-/*      z = 1/2 * ( creal(psi[n+1]) + cimag(psi[n+1])*I ); */
       sum += conj( (psi[n+1])/2 ) * (psi[n+1])/2 ;
     }
     else if (n==N-1) {
-/*      z = 1/2 * ( creal((-1)*psi[n-1]) + cimag((-1)*psi[n-1])*I ); */
       sum += conj( (-1)*psi[n-1]/2 ) * (-1) * psi[n-1]/2 ;
     }
     else {
-/*      z = 1/2 * ( creal(psi[n+1]-psi[n-1]) + cimag(psi[n+1]-psi[n-1])*I ); */
       sum += conj( ( psi[n+1]-psi[n-1] )/2 ) * ( psi[n+1]-psi[n-1] )/2 ;
     }
-/*    sum += conj(z) * z; */
 /*    printf("[observables.c | avgsqr_p()] sum=\t%f\n", sum); */
   }
-  double test = sum/Normal(psi);
+  // double test = sum/Normal(psi);
 /*  printf("[observables.c | avgsqr_p()] sum/Normalization=\t%f\n", test); */
   return (sum) / Normal(psi);
 }
