@@ -139,10 +139,10 @@ int main(int argc, char* argv[]) {
   */
   int k = get_minV();
   if (k < 0) {
-    eigenvalue += k;
+    eigenvalue -= k;
   }
   else {
-    eigenvalue -= k;
+    eigenvalue += k;
   }
   printf("ANNOUNCMENT: The eigenvalue is: %f\n", eigenvalue);
 

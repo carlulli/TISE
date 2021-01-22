@@ -11,7 +11,7 @@
 static int N;
 static double mass;
 static double *V;
-static double min; //minimum value of the potential;
+static double min = 0.0; //minimum value of the potential;
 static int shift = 0;
 
 
@@ -152,7 +152,11 @@ void set_Hdefpos() {
 		printf("The hamiltonian is already definite positive \n");
 	}
 }
+
 double get_minV() {
+	if (min == 0) {
+		printf("[hamiltonian.c | get_minV()] min is still 0 (to check min=%f)\n", min);
+	}
 	return min;
 }
 
