@@ -15,8 +15,8 @@ Inside TISE:
   - compile.sh: a shell script that compiles the main.c code
 
 ### Running the code
-After downloading and saving the code structure, run ``` compile.sh ``` from within the TISE directory to compile the code.
-(Reminder: include compiling code for the test codes.)
+After downloading and saving the code structure, run ``` build.sh ``` from within the TISE directory to compile the code.
+This compiles and links the main code and the testing files. 
 
 Following successful compiling run ``` main.o [NUM] [mass] [potential number] [tol] [res] ```
 The parameters are as follows:
@@ -26,7 +26,7 @@ The parameters are as follows:
  - tol = tolerance for the power method. Will be a double.
  - res = residue for the conjugate gradient. Will be a double.
 
- Running the testing: ??
+ Running the testing: After running ``` build.sh ``` the test output files should be created inside the test directory. From there all tests can be run.
 
 ### bout the modules
 
