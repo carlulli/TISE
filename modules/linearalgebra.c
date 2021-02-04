@@ -65,7 +65,7 @@ void multAtimesv( double complex* in, double complex* out)
         for(int i = 0; i < N; i++)
         {
             for(int k = 0; k < N; k++)
-                C[i][k] = 1.0/N * rand()/RAND_MAX ;
+                C[i][k] = -0.2+0.1 * rand()/RAND_MAX;
         }
 
         /* Set A equal to Cdag.C */
@@ -100,6 +100,6 @@ void randvec(double complex* vec, int M)
 		//srand(time(NULL));
     for(int i = 0; i < M; i++)
     {
-        vec[i] = 1.0 * rand()/RAND_MAX + 1.0 * rand()/RAND_MAX *I;
+        vec[i] = -1.0+2.0 * rand()/RAND_MAX + (-1.0+2.0 * rand()/RAND_MAX )*I;
     }
 }

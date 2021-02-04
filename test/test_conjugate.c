@@ -107,7 +107,8 @@ int kfac;
 // takes parameters N dimension of the vector and accuracy (=residue) for the testing
 int main(int argc, char* argv[]) {
 
-  assert(argc==4,_FILE_NAME_,"main"," For this routine input the following: [N] [residue]");
+  assert(argc==4,_FILE_NAME_,"main"," For this routine input the following: [N] [residue] [kfac] \n \
+  kfac being the integer value of the factor of the identity matrix, which is going to be added to our random matrix.");
   //use geometry.h to take the parameter
   set_params(argc,argv);
   N = get_N();
@@ -186,7 +187,9 @@ multiply A*x to see if its similar to b
     }
     deviation = norm(result,N);
     differ = accuracy - deviation;
-    printf("\n The deviation: abs(A*x - b) is %.20f .\n The accuracy parameter, which should be achieved, was %.20f \n\n. The difference accuracy minus deviation is %.20f ", deviation, accuracy, differ);
+    printf("\n The deviation: abs(A*x - b) is %.20f .\n The accuracy parameter, which should be achieved, was %.20f \n\n.\
+     The difference (accuracy minus deviation) is %.20f \n \
+     If this value is positive our desired accuracy was achieved. \n ", deviation, accuracy, differ);
 
 
 
