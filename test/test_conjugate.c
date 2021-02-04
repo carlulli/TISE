@@ -25,6 +25,7 @@ ${MDIR}/geometry.c ${MDIR}/assert.c ${MDIR}/linearalgebra.c
 
 static int N;
 double accuracy;
+int kfac;
 
 
 // /*Function for acting with matrix on vector*/
@@ -106,11 +107,12 @@ double accuracy;
 // takes parameters N dimension of the vector and accuracy (=residue) for the testing
 int main(int argc, char* argv[]) {
 
-  assert(argc==3,_FILE_NAME_,"main"," For this routine input the following: [N] [residue]");
+  assert(argc==4,_FILE_NAME_,"main"," For this routine input the following: [N] [residue]");
   //use geometry.h to take the parameter
   set_params(argc,argv);
   N = get_N();
   accuracy = atof(argv[2]);
+  kfac = atof(argv[3]);
   double complex x[N];
 
   double complex vec[N];
@@ -118,6 +120,7 @@ int main(int argc, char* argv[]) {
   double complex c[N] ;
   double complex result[N];
   double deviation;
+  double differ;
 
   srand(time(NULL));
 
@@ -182,7 +185,8 @@ multiply A*x to see if its similar to b
         result[i] = c[i]- b[i];
     }
     deviation = norm(result,N);
-    printf("\n The deviation: abs(A*x - b) is %.15f .\n The accuracy parameter, which should be achieved, was %.15f \n\n. ", deviation, accuracy);
+    differ = accuracy - deviation;
+    printf("\n The deviation: abs(A*x - b) is %.20f .\n The accuracy parameter, which should be achieved, was %.20f \n\n. The difference accuracy minus deviation is %.20f ", deviation, accuracy, differ);
 
 
 

@@ -5,6 +5,7 @@
 #include <time.h>
 #include "geometry.h"
 
+int kfac ;
 
 /* Calculates the complex scalar product of two complex vectors */
 double complex scalar_product(double complex* a, double complex* b, int N) {
@@ -77,7 +78,10 @@ void multAtimesv( double complex* in, double complex* out)
                     sum += conj(C[k][i])*C[k][j];
 
                 A[i][j] = sum;
-            }
+								if(i == j){
+									A[i][i] += kfac ;
+								}
+						            }
         }
 
         /* Free the memory for C. */
