@@ -41,7 +41,7 @@ void multiplyvec(double complex **mat, double complex *vec, double complex *res)
     return;
 }
 /* Function for creating a semi definite positive random Matrix*/
-void multAtimesv( double complex* in, double complex* out)
+	void multAtimesv( double complex* in, double complex* out)
 {
 	 	int N = get_N();
 		static double complex **A=NULL;
@@ -65,7 +65,7 @@ void multAtimesv( double complex* in, double complex* out)
         for(int i = 0; i < N; i++)
         {
             for(int k = 0; k < N; k++)
-                C[i][k] = -0.2+0.1 * rand()/RAND_MAX;
+                C[i][k] = -0.1+0.2 * rand()/RAND_MAX;
         }
 
         /* Set A equal to Cdag.C */
