@@ -5,6 +5,7 @@
 #include <time.h>
 #include "geometry.h"
 
+int kfac ;
 
 /* Calculates the complex scalar product of two complex vectors */
 double complex scalar_product(double complex* a, double complex* b, int N) {
@@ -40,7 +41,7 @@ void multiplyvec(double complex **mat, double complex *vec, double complex *res)
     return;
 }
 /* Function for creating a semi definite positive random Matrix*/
-void multAtimesv( double complex* in, double complex* out)
+	void multAtimesv( double complex* in, double complex* out)
 {
 	 	int N = get_N();
 		static double complex **A=NULL;
@@ -64,7 +65,7 @@ void multAtimesv( double complex* in, double complex* out)
         for(int i = 0; i < N; i++)
         {
             for(int k = 0; k < N; k++)
-                C[i][k] = 1.0/N * rand()/RAND_MAX ;
+                C[i][k] = -0.1+0.2 * rand()/RAND_MAX;
         }
 
         /* Set A equal to Cdag.C */
@@ -77,7 +78,10 @@ void multAtimesv( double complex* in, double complex* out)
                     sum += conj(C[k][i])*C[k][j];
 
                 A[i][j] = sum;
-            }
+								if(i == j){
+									A[i][i] += kfac ;
+								}
+						            }
         }
 
         /* Free the memory for C. */
@@ -96,6 +100,6 @@ void randvec(double complex* vec, int M)
 		//srand(time(NULL));
     for(int i = 0; i < M; i++)
     {
-        vec[i] = 1.0 * rand()/RAND_MAX + 1.0 * rand()/RAND_MAX *I;
+        vec[i] = -1.0+2.0 * rand()/RAND_MAX + (-1.0+2.0 * rand()/RAND_MAX )*I;
     }
 }
